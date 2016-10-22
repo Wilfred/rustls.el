@@ -29,8 +29,10 @@
 (require 'ht)
 
 (defun rustls--build-request (table)
-  (let ((json-encoding-pretty-print t))
-    (json-encode table)))
+  (let* ((json-encoding-pretty-print t)
+         (encoded (json-encode table)))
+    (format "Content-Length: %s\r\n\r\n%s"
+            (length encoded) encoded)))
 
 (defvar rustls--dir "/home/wilfred/projects/tiddles/")
 
@@ -46,7 +48,7 @@
     ("params"
      (ht ("processId" (emacs-pid))
          ("root-path" rustls--dir)
-         ("params" (ht)))))))
+         ("capabilities" (ht)))))))
 
 (provide 'rustls)
 ;;; rustls.el ends here
