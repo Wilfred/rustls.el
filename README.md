@@ -22,3 +22,8 @@ $ cd /path/to/rustls
 $ cargo build
 $ SYSROOT=`rustc --print sysroot` cargo run
 ```
+
+## Specification
+
+rustls implements the Language Server Protocol, which is
+[documented here](https://github.com/Microsoft/language-server-protocol/blob/master/protocol.md).
